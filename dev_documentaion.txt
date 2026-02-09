@@ -1,3 +1,22 @@
 This file document how I approach this assesment in order to complete it.
 
-- find out which api to use
+- find out which api to use in pokemon api documentation
+- ai prompt : how do we properly fetch list of pokemons, + their details from its URL properly (image, type, height, wight) parallelly? https:loop
+{"name":"caterpie","image":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/other\/official-artwork\/10.png","types":["bug"],"height":3,"weight":29}
+is it okay that our image url \/?  json encode settings
+- handle cors error?
+'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'allowed_methods' => ['*'],
+    
+    // Allow your Next.js frontend here
+    'allowed_origins' => ['http://localhost:3000'], 
+
+    'allowed_origins_patterns' => [],
+    'allowed_headers' => ['*'],
+    'exposed_headers' => [],
+    'max_age' => 0,
+    'supports_credentials' => false,
+
+    what cai i add to improve my backend
+    - Input validation: keep controller clean from validation logic
+    - caching : data rarely change. watch out api call.
