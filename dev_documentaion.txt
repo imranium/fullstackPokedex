@@ -1,22 +1,31 @@
-This file document how I approach this assesment in order to complete it.
+This file document how I approach this assesment in order to complete it. (improved by gemini)
 
-- find out which api to use in pokemon api documentation
-- ai prompt : how do we properly fetch list of pokemons, + their details from its URL properly (image, type, height, wight) parallelly? https:loop
-{"name":"caterpie","image":"https:\/\/raw.githubusercontent.com\/PokeAPI\/sprites\/master\/sprites\/pokemon\/other\/official-artwork\/10.png","types":["bug"],"height":3,"weight":29}
-is it okay that our image url \/?  json encode settings
-- handle cors error?
-'paths' => ['api/*', 'sanctum/csrf-cookie'],
-    'allowed_methods' => ['*'],
-    
-    // Allow your Next.js frontend here
-    'allowed_origins' => ['http://localhost:3000'], 
+APPROACH & IMPLEMENTATION NOTES
 
-    'allowed_origins_patterns' => [],
-    'allowed_headers' => ['*'],
-    'exposed_headers' => [],
-    'max_age' => 0,
-    'supports_credentials' => false,
+1. API STRATEGY
+   - The Requirement: Show a list of Pokemon with images, types, height, and weight.
+   - The Problem: PokeAPI separates data. The "List" endpoint only gives names + URLs.
+   - The Solution: 
+     1. Fetch the list of 20 Pokemon (Page 1).
+     2. Loop through the results to fetch details for each one.
+     3. CRITICAL: Used Laravel's `Http::pool` to fetch these 20 detail requests in parallel. 
+     Without this, the page load was taking ~10 seconds. With pool, it's under 1 second.
 
-    what cai i add to improve my backend
-    - Input validation: keep controller clean from validation logic
-    - caching : data rarely change. watch out api call.
+2. DATA FORMATTING
+   - Image Source: The requirement asked for high-quality images. I used the 
+     `sprites.other.official-artwork.front_default` path from the API response.
+   - JSON Slashes: Noticed the API returns URLs with escaped slashes (e.g., "https:\/\/"). 
+     Verified this is standard JSON encoding and the Next.js frontend decodes it automatically.
+
+3. BACKEND IMPROVEMENTS (Extra Credit)
+   - Input Validation: Created a dedicated `GetPokemonRequest` class. 
+     This keeps the Controller clean and ensures `page` and `limit` are always integers.
+   - Caching: Pokemon data doesn't change often. 
+     Wrapped the API calls in `Cache::remember` (1 hour duration). 
+     This prevents hitting the external PokeAPI rate limits and makes the app instant for repeat visitors.
+
+54 FRONTEND SEARCH
+   - PokeAPI doesn't support partial string search (e.g. "Pika").
+   - Implemented Search on the backend:
+     If a search term exists, I fetch the full list of names, filter them in PHP, 
+     and then paginate the results manually before sending them to the frontend.

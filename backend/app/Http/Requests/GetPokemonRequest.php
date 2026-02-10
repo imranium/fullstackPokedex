@@ -25,8 +25,11 @@ class GetPokemonRequest extends FormRequest
             // Ensure page is a number and at least 1
             'page' => ['sometimes', 'integer', 'min:1'],
             
-            // Limit the items per page (e.g., max 100 to prevent API abuse)
+            // Limit the items per page (max 100 to prevent API abuse)
             'limit' => ['sometimes', 'integer', 'min:1', 'max:100'],
+
+            // Search query
+            'search' => ['sometimes', 'nullable', 'string', 'max:255'],
         ];
     }
     protected function prepareForValidation() 
@@ -34,6 +37,7 @@ class GetPokemonRequest extends FormRequest
         $this->merge([
             'page' => $this->input('page', 1),
             'limit' => $this->input('limit', 20),
+            'search' => $this->input('search', null),
         ]);
     }
 }

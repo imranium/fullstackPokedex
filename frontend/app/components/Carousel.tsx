@@ -46,6 +46,8 @@ export const Carousel = () => {
 
   return (
     <div className="relative w-full h-full bg-gray-300 flex items-center justify-center overflow-hidden group">
+
+      {/* Left Button */}
       <button
         className="absolute left-4 z-10 p-2 bg-black/30 hover:bg-black/50 text-white rounded-full transition-opacity opacity-0 group-hover:opacity-100"
         onClick={handlePreviousClick}
@@ -71,7 +73,8 @@ export const Carousel = () => {
           </div>
         ))}
       </div>
-
+      
+      {/* Left Button */}
       <button
         className="absolute right-4 z-10 p-2 bg-black/30 hover:bg-black/50 text-white rounded-full transition-opacity opacity-0 group-hover:opacity-100"
         onClick={handleNextClick}

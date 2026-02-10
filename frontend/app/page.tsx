@@ -23,14 +23,15 @@ export default function Home() {
 
     <main className="min-h-screen flex flex-col items-center">
       
-      {/* --- TOP SECTION (Carousel & Banners) */}
+      {/* TOP SECTION */}
       <div className="w-full max-w-7xl p-4 grid grid-cols-1 md:grid-cols-4 gap-4">
-        {/* Left: Carousel */}
+
+        {/* Carousel */}
         <div className="md:col-span-3 h-64 rounded-sm overflow-hidden">
           <Carousel />
         </div>
 
-        {/* Right: Two Static Banners */}
+        {/* Two Static Banners */}
         <div className="flex flex-col gap-4 h-64">
           <div className="flex-1 rounded-sm flex items-center justify-center">
             <img src="/images/pokemon.png" alt="static banner 1" />
@@ -39,11 +40,13 @@ export default function Home() {
             <img src="/images/Pokemon_Go.svg.png" alt="static banner 2" className="w-56 h-24"/>
           </div>
         </div>
+
       </div>
       
-      {/* --- MIDDLE SECTION (Persistent Grid) */}
+      {/* MIDDLE SECTION */}
       <div className="w-full max-w-7xl p-4 grid grid-cols-12 gap-6 items-start relative">
-        {/* LEFT COLUMN (Static Image) - Sticky */}
+
+        {/* LEFT COLUMN (Static Image) */}
         <aside className="hidden md:block col-span-2 sticky top-4 h-64 rounded-sm">
           <img src="images/ad-2.jpg" alt="static ad left" className="rounded-sm"/>
         </aside>
@@ -61,12 +64,10 @@ export default function Home() {
             />
             <button 
               onClick={handleSearchTrigger}
-              className="px-6 py-2 bg-orange-400 text-white rounded-3xl font-bold hover:bg-orange-500 transition-colors"
-            >
+              className="px-6 py-2 bg-orange-400 text-white rounded-3xl font-bold hover:bg-orange-500 transition-colors">
               Search
             </button>
           </div>
-
           <PokemonList query={activeQuery} />
         </section>
 
