@@ -10,13 +10,11 @@ A full-stack web application that aggregates Pokémon data using a **Laravel** b
 * **Framework:** Laravel 11 (API Only)
 * **Language:** PHP 8.2+
 * **Database:** SQLite (No external DB setup required)
-* **Key Features:** Concurrent API Fetching (`Http::pool`), Server-side Caching, Custom Search Logic.
 
 **Frontend**
 * **Framework:** Next.js 14 (App Router)
 * **Styling:** Tailwind CSS
 * **Language:** TypeScript
-* **Key Features:** Persistent Layout, Infinite Scroll/Pagination, Debounced Search, Responsive Grid.
 
 ---
 
