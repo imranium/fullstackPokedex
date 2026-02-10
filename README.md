@@ -42,6 +42,22 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+Create the SQLite database file. Note: The database file is not included in the repo for security. You must create it manually.
+
+```bash
+# Mac / Linux
+touch database/database.sqlite
+
+# Windows (PowerShell)
+New-Item database/database.sqlite
+```
+
+Run Migrations. This creates the necessary tables (including the system cache table required for the API to run).
+
+```bash
+php artisan migrate
+```
+
 Serve the application (Runs on http://localhost:8000).
 
 ```bash
