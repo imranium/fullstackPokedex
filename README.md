@@ -1,4 +1,3 @@
-```markdown
 # Fullstack Pokédex Assessment
 
 ![Pokédex Home Preview](frontend/public/images/screenshot.png)
